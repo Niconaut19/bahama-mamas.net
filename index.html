@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Bahama Mamas Event App für RageMP Server">
+    <meta name="theme-color" content="#000000">
+    <title>Bahama Mamas</title>
+    <link rel="stylesheet" href="styles/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="sidebar">
+    <nav>
+        <ul>
+    <li><a href="#home">Home</a></li>
+    <li><a href="#events">Events</a></li>
+    <li><a href="#cocktails">Cocktails</a></li>
+    <li><a href="#lounges">Lounges</a></li>
+    <li><a href="#kontakt">Kontakt</a></li>
+    <li><a href="#karriere">Karriere</a></li> <!-- NEU -->
+</ul>
+
+    </nav>
+</div>
+
+<div class="scroll-container">
+<div class="main">
+    <div class="logo">
+        <img src="assets/Bahama_Logo.png" alt="Bahama Mamas Logo">
+    </div>
+
+    <div class="content">
+        <section id="home" class="section">
+            <div class="section-content">
+                <img src="assets/Bahama_Logo.png" alt="Bahama Mamas Logo" class="hero-logo">
+                <h1>Willkommen im Bahama Mamas!</h1>
+                <div id="openStatusArea">
+    <video id="statusVideo" autoplay loop muted playsinline width="350" height="auto">
+        <source id="statusSource" src="assets/Bahama_Mamas_Closed.mp4" type="video/mp4">
+        Dein Browser unterstützt kein Video.
+    </video>
+</div>
+            </div>
+        </section>
+
+        <section id="events" class="section">
+            <div class="section-content">
+                <h2>Events</h2>
+                <div id="calendar"></div>
+            </div>
+        </section>
+
+        <section id="cocktails" class="section">
+    <div class="section-content">
+        <h2>Cocktails</h2> <!-- Überschrift wieder einsetzen! -->
+        <div class="cocktailkarte-container">
+            <div class="cocktailkarte-wrapper">
+                <img src="assets/Bahama_Cocktailkarte_1.gif" alt="Cocktailkarte 1" class="cocktailkarte">
+                <p class="click-hint">Hier klicken zum Vergrößern</p>
+            </div>
+            <div class="cocktailkarte-wrapper">
+                <img src="assets/Bahama_Cocktailkarte_2.gif" alt="Cocktailkarte 2" class="cocktailkarte">
+                <p class="click-hint">Hier klicken zum Vergrößern</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+        <section id="lounges" class="section">
+    <div class="section-content">
+        <h2>Lounges</h2>
+
+        <div class="cocktail-container">
+            <video class="zoomable" width="600" height="auto" autoplay loop muted playsinline>
+                <source src="assets/Bahama_Mamas_Lounges.mp4" type="video/mp4">
+                Dein Browser unterstützt kein Video.
+            </video>
+            <p class="click-hint">Hier klicken zum Vergrößern</p>
+        </div>
+
+    </div>
+</section>
+
+        <section id="kontakt" class="section">
+    <div class="section-content">
+        <h2>Kontakt</h2>
+
+        <div class="kontakt-info">
+            <p><strong>Inhaber:</strong> James Brick</p>
+            <p><strong>Private Telefonnummer:</strong> 486202</p>
+            <p><strong>Leitstelle:</strong> 551551</p>
+            <p><strong>Email:</strong> <a href="mailto:bahamas@mail.ls">bahamas@mail.ls</a></p>
+        </div>
+    </div>
+</section>
+
+<section id="karriere" class="section">
+    <div class="section-content">
+        <h2>Karriere</h2>
+        
+        <div id="karriere-aktiv">
+            <div class="cocktailkarte-container">
+                <div class="cocktailkarte-wrapper">
+                    <img src="assets/Wir suchen Dichv2.gif" alt="Karriere" class="cocktailkarte">
+                    <p class="click-hint">Hier klicken zum Vergrößern</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="karriere-inaktiv" style="display: none;">
+            <p class="karriere-info">Aktuell suchen wir leider keine neuen Mitarbeiter.</p>
+        </div>
+
+    </div>
+</section>
+
+
+<!-- Lightbox -->
+<div id="lightbox" class="lightbox">
+    <img id="lightbox-img" src="" alt="Cocktailkarte groß">
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
+<script src="scripts/app.js"></script>
+
+</body>
+</html>
+
