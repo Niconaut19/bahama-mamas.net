@@ -1,0 +1,385 @@
+/* Allgemeine Settings */
+html, body {
+    height: 100%;
+    margin: 0;
+    overflow: hidden; /* <<< WICHTIG: Kein Scrollen am Body */
+    scroll-behavior: smooth;
+    font-family: 'Poppins', sans-serif;
+    background-image: url('../assets/Bahama_Mamas_Hintergrund_APP_Prasentation_2.png');
+    background-size: cover;
+    background-color: #000000;
+}
+
+/* Sidebar */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 160px; /* oder wie breit du sie willst */
+    height: 100vh;
+    background-color: black; /* oder was du willst */
+    z-index: 10; /* wichtig, dass sie über allem liegt */
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar ul li {
+    margin: 20px 0;
+}
+
+.sidebar ul li a {
+    display: block;
+    color: #00e6e6;
+    text-decoration: none;
+    font-size: 16px; /* Kleiner für cleaneren Look */
+    text-align: center;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.sidebar ul li a:hover,
+.sidebar ul li a.active {
+    color: #ff00ff;
+    transform: scale(1.1);
+    text-shadow: 0 0 12px #ff00ff;
+}
+
+/* Logo */
+.logo {
+    position: fixed;
+    top: 30px;
+    right: 30px;
+    width: 120px;
+    z-index: 1001;
+}
+
+.logo img {
+    width: 100%;
+}
+
+/* Main Content */
+.main {
+    margin-left: 160px;
+    margin-right: 160px;
+    padding-top: 100px;
+    width: calc(100% - 320px);
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+/* Sections */
+.section {
+    min-height: 100vh;
+    scroll-snap-align: start;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* WICHTIG: Start = oben */
+    align-items: center;
+    padding-top: 60px; /* Abstand von ganz oben */
+}
+
+.section-content {
+    width: 100%;
+    max-width: 1200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+/* Überschriften */
+h1 {
+    font-size: 60px;
+    color: #00e6e6;
+    text-shadow: 0px 0px 20px #00e6e6;
+    margin: 20px 0;
+}
+
+h2 {
+    font-size: 32px; /* Einheitliche Überschriften-Größe für alle Bereiche */
+    color: #00e6e6;
+    text-shadow: 0 0 8px #00e6e6;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Korrektur: Überschrift im Events Bereich */
+#events h2 {
+    font-size: 32px !important; /* gleiche Größe wie überall */
+    text-align: center;
+}
+
+/* Home Section */
+#home {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* WICHTIG: center statt flex-start */
+    min-height: 100vh;
+    padding: 0;
+    text-align: center;
+}
+
+.hero-logo {
+    width: 280px;
+    margin-bottom: 20px; /* Abstand NACH dem Logo */
+}
+
+#home h1 {
+    font-size: 60px;
+    margin-bottom: 20px; /* GLEICHER Abstand nach der Überschrift */
+}
+
+#openStatusArea img {
+    width: 350px;
+    margin-top: 0; /* KEIN zusätzlicher Abstand nötig */
+}
+
+/* Cocktailkarten */
+.cocktailkarte-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 60px; /* NEUER Abstand: 60px */
+    flex-wrap: nowrap;
+    width: 100%;
+    max-width: 1200px;
+    margin: 20px auto 0 auto;
+}
+
+.cocktailkarte {
+    width: 600px; /* größer gemacht */
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 0 20px #00e6e6;
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.cocktailkarte:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 25px #ff00ff;
+}
+
+/* Specials / Lounge */
+.lounge-gif {
+    width: 400px;
+    margin: 20px 0;
+    border-radius: 12px;
+}
+
+/* Lightbox */
+.lightbox {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+}
+
+.lightbox img {
+    max-width: 90%;
+    max-height: 90%;
+    border-radius: 15px;
+    box-shadow: 0 0 40px #ff00ff;
+    transition: all 0.3s;
+    animation: popIn 0.3s ease;
+}
+
+@keyframes popIn {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Calendar */
+#calendar {
+    width: 100%;
+    max-width: 1200px; /* etwas breiter */
+    margin: 40px auto; /* oben und unten Luft */
+    background: rgba(0, 0, 0, 0.7);
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 0 30px #00e6e6;
+}
+
+.fc {
+    font-family: 'Poppins', sans-serif;
+    color: #ffffff;
+    font-size: 16px;
+}
+
+.fc-daygrid-day-number,
+.fc-col-header-cell-cushion {
+    color: #00e6e6;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.fc-event-title {
+    font-size: 16px;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+#events {
+    padding-top: 10px; /* Noch weniger Abstand nach oben */
+}
+
+#events .section-content {
+    margin-top: 0;
+}
+
+#events h2 {
+    font-size: 48px; /* Optional: etwas kleinere Schrift für edleres Feeling */
+    margin-bottom: 20px; /* schöner Abstand unter Überschrift */
+}
+
+#calendar {
+    margin-top: 0; /* Kalender direkt unter Events-Titel */
+}
+
+/* FullCalendar Buttons stylen */
+.fc-button {
+    background-color: rgba(0, 230, 230, 0.3); /* leichte Neonfarbe */
+    color: #00e6e6;
+    border: 1px solid #00e6e6;
+    border-radius: 8px;
+    padding: 5px 12px;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+}
+
+.fc-button:hover {
+    background-color: rgba(255, 0, 255, 0.4);
+    border-color: #ff00ff;
+    color: #ffffff;
+    box-shadow: 0 0 10px #ff00ff;
+}
+
+.fc-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.fc-toolbar-title {
+    font-size: 28px; /* kleinere Schrift für den Monat */
+    color: #00e6e6; /* passend zum Neon-Design */
+    text-shadow: 0 0 8px #00e6e6;
+    font-weight: 600;
+}
+
+/* FullCalendar Titel kleiner und zentriert */
+.fc-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.fc-toolbar-title {
+    font-size: 18px; /* Jetzt wirklich fein und dezent */
+    color: #00e6e6;
+    text-shadow: 0 0 8px #00e6e6;
+    font-weight: 600;
+    text-align: center;
+    flex-grow: 1;
+}
+
+.cocktailkarte-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.click-hint {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #00e6e6;
+    text-shadow: 0 0 6px #00e6e6;
+    font-weight: 400;
+    text-align: center;
+}
+
+.karriere-info {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 16px;
+    color: #ff00ff;
+    text-shadow: 0 0 6px #ff00ff;
+}
+
+.hidden {
+    display: none;
+}
+
+.karriere-info {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 16px;
+    color: #ff00ff;
+    text-shadow: 0 0 6px #ff00ff;
+}
+
+.scroll-container {
+    margin-left: 160px;
+    height: 100vh;
+    overflow-y: auto; /* WICHTIG: auto statt scroll */
+    scroll-snap-type: y mandatory;
+}
+
+.section-content h2 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 48px;
+    text-align: center;
+    color: white;
+}
+
+.kontakt-info {
+    color: white;
+    font-size: 20px;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.kontakt-info p {
+    margin: 10px 0;
+    color: #ff00ff; /* Bahama Mamas Pink */
+}
+
+.kontakt-info a {
+    color: #ff00ff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.kontakt-info a:hover {
+    text-decoration: underline;
+}
+
