@@ -462,14 +462,15 @@ h2 {
     }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1024px) {
     .cocktailkarte-container {
-        flex-direction: column;
+        flex-wrap: wrap;
         gap: 30px;
+        justify-content: center;
     }
 
     .cocktailkarte {
-        width: 90%;
+        width: 42%;
         max-width: 320px;
     }
 }
