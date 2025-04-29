@@ -66,13 +66,43 @@ function setupSidebarScroll() {
     const navLinks = document.querySelectorAll('.sidebar ul li a');
     const sections = document.querySelectorAll('.section');
 
-    // Smooth Scroll bei Klick
+    // Funktion zum aktiven Link aktualisieren
+    function updateActiveLink() {
+        let current = "";
+
+        if (scrollContainer.scrollTop <= 20) {
+            current = "home";
+        } else {
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (scrollContainer.scrollTop >= sectionTop - 100) {
+                    current = section.getAttribute('id');
+                }
+            });
+        }
+
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === '#' + current) {
+                link.classList.add('active');
+            }
+        });
+    }
+
+    // Klickverhalten mit sofortigem Pink + Scroll
     navLinks.forEach(link => {
         link.addEventListener('click', function(e) {
             e.preventDefault();
+
+            // Ziel-ID holen
             const targetId = this.getAttribute('href').substring(1);
             const targetSection = document.getElementById(targetId);
 
+            // Alle Links zurücksetzen und diesen sofort aktiv markieren
+            navLinks.forEach(link => link.classList.remove('active'));
+            this.classList.add('active');
+
+            // Scrollen zum Ziel
             if (targetSection) {
                 if (targetId === "home") {
                     scrollContainer.scrollTo({
@@ -86,35 +116,20 @@ function setupSidebarScroll() {
                     });
                 }
             }
+
+            // Nach 500ms scrollPosition nochmal prüfen und ggf. korrigieren
+            setTimeout(() => {
+                updateActiveLink();
+            }, 500);
         });
     });
 
-    // Scroll-Highlight inkl. Home ganz oben
+    // Beim Scrollen automatisch nachziehen
     let ticking = false;
     scrollContainer.addEventListener('scroll', () => {
         if (!ticking) {
             window.requestAnimationFrame(() => {
-                let current = "";
-
-                // Home aktiv, wenn ganz oben oder fast ganz oben
-                if (scrollContainer.scrollTop <= 20) {
-                    current = "home";
-                } else {
-                    sections.forEach(section => {
-                        const sectionTop = section.offsetTop;
-                        if (scrollContainer.scrollTop >= sectionTop - 80) {
-                            current = section.getAttribute('id');
-                        }
-                    });
-                }
-
-                navLinks.forEach(link => {
-                    link.classList.remove('active');
-                    if (link.getAttribute('href') === '#' + current) {
-                        link.classList.add('active');
-                    }
-                });
-
+                updateActiveLink();
                 ticking = false;
             });
             ticking = true;
