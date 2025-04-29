@@ -1,22 +1,19 @@
 @echo off
-echo -----------------------------------
-echo GitHub Auto-Push wird gestartet...
-echo -----------------------------------
+echo Prüfe auf Änderungen...
 
-:: Prüfen, ob es Änderungen gibt
-git status | findstr "Changes not staged for commit" > nul
-if %errorlevel%==0 (
-    echo Änderungen erkannt! Dateien werden hinzugefügt...
-    git add .
-    git commit -m "Auto-Update vom %date% %time%"
-    echo Dateien werden zu GitHub hochgeladen...
-    git push
-    echo -----------------------------------
-    echo Push abgeschlossen! Deine Website wird bald aktualisiert!
-) else (
+:: Checke ob es Änderungen gibt
+git diff-index --quiet HEAD --
+
+if %errorlevel% equ 0 (
     echo Keine Änderungen gefunden. Nichts zu pushen.
+) else (
+    echo Änderungen gefunden. Push wird gestartet...
+    git add .
+    git commit -m "Website Update"
+    git push origin main --force
+    echo Push abgeschlossen! Deine Website wird bald aktualisiert!
 )
 
-echo Fenster schließt in 5 Sekunden...
-timeout /t 5
+timeout /t 5 /nobreak > NUL
 exit
+
