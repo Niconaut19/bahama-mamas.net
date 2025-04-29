@@ -2,7 +2,7 @@
 html, body {
     height: 100%;
     margin: 0;
-    overflow-x: hidden; /* Neu */
+    overflow-x: hidden !important;
     scroll-behavior: smooth;
     font-family: 'Poppins', sans-serif;
     background-image: url('../assets/Bahama_Mamas_Hintergrund_APP.png');
@@ -19,15 +19,17 @@ html, body {
     position: fixed;
     top: 0;
     left: 0;
-    width: 160px; /* oder wie breit du sie willst */
-    height: 100vh;
-    background-color: black; /* oder was du willst */
-    z-index: 10; /* wichtig, dass sie über allem liegt */
+    width: 160px;
+    height: 100vh; /* ganze Höhe */
+    background-color: rgba(0, 0, 0, 0.6); /* transparente Farbe */
+    z-index: 10;
+    border-right: 2px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(4px);
 }
 
 .sidebar ul {
     list-style-type: none;
-    padding: 0;
+    padding: 60px 0 0 0; /* <-- Abstand von oben für Menü */
     margin: 0;
 }
 
@@ -354,6 +356,7 @@ h2 {
     margin-left: 160px;
     height: 100vh;
     overflow-y: auto;
+    overscroll-behavior-y: contain; /* <- verhindert "über den Rand hinaus"-Scroll */
 }
 
 .section-content h2 {
@@ -385,4 +388,13 @@ h2 {
 .kontakt-info a:hover {
     text-decoration: underline;
 }
+
+#home {
+    padding-top: 0 !important;
+    margin-top: 0 !important;
+    scroll-margin-top: 0 !important;
+    position: relative;
+    top: 0;
+}
+
 

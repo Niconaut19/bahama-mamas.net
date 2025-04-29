@@ -74,27 +74,39 @@ function setupSidebarScroll() {
             const targetSection = document.getElementById(targetId);
 
             if (targetSection) {
-                targetSection.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
+                if (targetId === "home") {
+                    scrollContainer.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                } else {
+                    targetSection.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
             }
         });
     });
 
-    // Scroll-Highlight throttlen
+    // Scroll-Highlight inkl. Home ganz oben
     let ticking = false;
     scrollContainer.addEventListener('scroll', () => {
         if (!ticking) {
             window.requestAnimationFrame(() => {
                 let current = "";
 
-                sections.forEach(section => {
-                    const sectionTop = section.offsetTop;
-                    if (scrollContainer.scrollTop >= sectionTop - 80) {
-                        current = section.getAttribute('id');
-                    }
-                });
+                // Home aktiv, wenn ganz oben oder fast ganz oben
+                if (scrollContainer.scrollTop <= 20) {
+                    current = "home";
+                } else {
+                    sections.forEach(section => {
+                        const sectionTop = section.offsetTop;
+                        if (scrollContainer.scrollTop >= sectionTop - 80) {
+                            current = section.getAttribute('id');
+                        }
+                    });
+                }
 
                 navLinks.forEach(link => {
                     link.classList.remove('active');
