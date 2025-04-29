@@ -132,9 +132,9 @@ h2 {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start; /* Startet oben */
-    padding-top: 60px; /* Abstand von oben */
+    justify-content: flex-start;
     min-height: 100vh;
+    padding-top: 100px;
     text-align: center;
     margin-top: 0 !important;
     scroll-margin-top: 0 !important;
@@ -142,33 +142,23 @@ h2 {
     top: 0;
 }
 
-.hero-logo {
-    width: 280px;
-    margin-bottom: 20px;
-}
-
 #home h1 {
     font-size: 60px;
+    margin: 10px 0 30px 0;
+}
+
+.hero-logo {
+    width: 260px;
     margin-bottom: 20px;
 }
 
-@media screen and (max-width: 1024px) {
-    #home {
-        padding-top: 80px; /* Etwas mehr Abstand auf Tablets */
-    }
-
-    .hero-logo {
-        width: 220px; /* Logo kleiner auf Tablets */
-    }
-
-    #home h1 {
-        font-size: 40px; /* Schrift kleiner auf Tablets */
-    }
+#openStatusArea {
+    margin-top: 10px;
 }
 
-#openStatusArea img {
-    width: 350px;
-    margin-top: 0; /* KEIN zusätzlicher Abstand nötig */
+#openStatusArea video {
+    width: 320px;
+    max-width: 90vw;
 }
 
 /* Cocktailkarten */
@@ -415,4 +405,72 @@ h2 {
     top: 0;
 }
 
+.section {
+    scroll-margin-top: 100px;
+}
+
+
+@media screen and (max-width: 1024px) {
+    #home {
+        padding-top: 80px;
+    }
+
+    .hero-logo {
+        width: 200px;
+    }
+
+    #home h1 {
+        font-size: 44px;
+    }
+
+    #openStatusArea video {
+        width: 260px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    #home {
+        padding-top: 60px;
+    }
+
+    .hero-logo {
+        width: 180px;
+    }
+
+    #home h1 {
+        font-size: 36px;
+    }
+
+    #openStatusArea video {
+        width: 220px;
+    }
+
+    .main {
+        margin: 0;
+        padding-top: 60px;
+        width: 100%;
+    }
+
+    .sidebar {
+        display: none; /* Optional: Sidebar ausblenden auf Mobile */
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .cocktailkarte {
+        width: 400px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .cocktailkarte-container {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .cocktailkarte {
+        width: 90%;
+        max-width: 320px;
+    }
+}
 
