@@ -363,8 +363,8 @@ h2 {
 .scroll-container {
     margin-left: 160px;
     height: 100vh;
-    overflow-y: auto;
-    overscroll-behavior-y: contain; /* <- verhindert "über den Rand hinaus"-Scroll */
+    overflow: hidden; /* kein freies Scrollen mehr! */
+    position: relative;
 }
 
 .section-content h2 {
