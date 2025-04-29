@@ -174,7 +174,7 @@ h2 {
 }
 
 .cocktailkarte {
-    width: 600px; /* größer gemacht */
+    width: 450px; /* statt 600px */
     height: auto;
     border-radius: 12px;
     box-shadow: 0 0 20px #00e6e6;
