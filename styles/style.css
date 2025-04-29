@@ -132,20 +132,38 @@ h2 {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center; /* WICHTIG: center statt flex-start */
+    justify-content: flex-start; /* Startet oben */
+    padding-top: 60px; /* Abstand von oben */
     min-height: 100vh;
-    padding: 0;
     text-align: center;
+    margin-top: 0 !important;
+    scroll-margin-top: 0 !important;
+    position: relative;
+    top: 0;
 }
 
 .hero-logo {
     width: 280px;
-    margin-bottom: 20px; /* Abstand NACH dem Logo */
+    margin-bottom: 20px;
 }
 
 #home h1 {
     font-size: 60px;
-    margin-bottom: 20px; /* GLEICHER Abstand nach der Überschrift */
+    margin-bottom: 20px;
+}
+
+@media screen and (max-width: 1024px) {
+    #home {
+        padding-top: 80px; /* Etwas mehr Abstand auf Tablets */
+    }
+
+    .hero-logo {
+        width: 220px; /* Logo kleiner auf Tablets */
+    }
+
+    #home h1 {
+        font-size: 40px; /* Schrift kleiner auf Tablets */
+    }
 }
 
 #openStatusArea img {
