@@ -2,12 +2,16 @@
 html, body {
     height: 100%;
     margin: 0;
-    overflow: hidden; /* <<< WICHTIG: Kein Scrollen am Body */
+    overflow-x: hidden; /* Neu */
     scroll-behavior: smooth;
     font-family: 'Poppins', sans-serif;
-    background-image: url('../assets/Bahama_Mamas_Hintergrund_APP_Prasentation_2.png');
+    background-image: url('../assets/Bahama_Mamas_Hintergrund_APP.png');
     background-size: cover;
     background-color: #000000;
+}
+
+* {
+    box-sizing: border-box;
 }
 
 /* Sidebar */
@@ -349,8 +353,7 @@ h2 {
 .scroll-container {
     margin-left: 160px;
     height: 100vh;
-    overflow-y: auto; /* WICHTIG: auto statt scroll */
-    scroll-snap-type: y mandatory;
+    overflow-y: auto;
 }
 
 .section-content h2 {

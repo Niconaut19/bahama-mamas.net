@@ -8,6 +8,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // --- Status-GIF (Open/Closed) automatisch wechseln ---
 function setupStatusVideo() {
+    let currentStatus = null;
+
     function updateStatus() {
         const now = new Date();
         const day = now.getDay();
@@ -16,15 +18,20 @@ function setupStatusVideo() {
         const statusVideo = document.getElementById('statusVideo');
 
         if (statusSource && statusVideo) {
-            if ((day === 5 || day === 6) && (hour >= 22 || hour < 1)) {
-                statusSource.src = "assets/Bahama_Mamas_Open.mp4";
-            } else {
-                statusSource.src = "assets/Bahama_Mamas_Closed.mp4";
+            const shouldBeOpen = (day === 5 || day === 6) && (hour >= 22 || hour < 1);
+            const newStatus = shouldBeOpen ? "open" : "closed";
+
+            if (newStatus !== currentStatus) {
+                currentStatus = newStatus;
+                statusSource.src = shouldBeOpen 
+                    ? "assets/Bahama_Mamas_Open.mp4"
+                    : "assets/Bahama_Mamas_Closed.mp4";
+                statusVideo.load();
+                statusVideo.play();
             }
-            statusVideo.load();
-            statusVideo.play();
         }
     }
+
     setInterval(updateStatus, 30000);
     updateStatus();
 }
@@ -59,7 +66,7 @@ function setupSidebarScroll() {
     const navLinks = document.querySelectorAll('.sidebar ul li a');
     const sections = document.querySelectorAll('.section');
 
-    // Klick-Events anpassen
+    // Smooth Scroll bei Klick
     navLinks.forEach(link => {
         link.addEventListener('click', function(e) {
             e.preventDefault();
@@ -75,23 +82,31 @@ function setupSidebarScroll() {
         });
     });
 
-    // Scroll-Highlight-Funktion
+    // Scroll-Highlight throttlen
+    let ticking = false;
     scrollContainer.addEventListener('scroll', () => {
-        let current = "";
+        if (!ticking) {
+            window.requestAnimationFrame(() => {
+                let current = "";
 
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop;
-            if (scrollContainer.scrollTop >= sectionTop - 80) {
-                current = section.getAttribute('id');
-            }
-        });
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    if (scrollContainer.scrollTop >= sectionTop - 80) {
+                        current = section.getAttribute('id');
+                    }
+                });
 
-        navLinks.forEach(link => {
-            link.classList.remove('active');
-            if (link.getAttribute('href') === '#' + current) {
-                link.classList.add('active');
-            }
-        });
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === '#' + current) {
+                        link.classList.add('active');
+                    }
+                });
+
+                ticking = false;
+            });
+            ticking = true;
+        }
     });
 }
 
