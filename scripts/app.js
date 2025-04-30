@@ -42,7 +42,7 @@ function setupCalendar() {
     if (calendarEl) {
         const calendar = new FullCalendar.Calendar(calendarEl, {
             initialView: 'dayGridMonth',
-            aspectRatio: 1.8, // etwas schmaler, damit Kalender nicht so hoch wirkt
+            aspectRatio: 1.8,
             fixedWeekCount: false,
             height: 'auto',
             events: [
@@ -51,10 +51,13 @@ function setupCalendar() {
                 { title: 'Beach Vibes', start: '2025-05-16', color: '#ff00ff' }
             ],
             headerToolbar: {
-    start: '',         // Keine Buttons links
-    center: 'title',   // Titel bleibt in der Mitte
-    end: 'today prev,next'  // Alle Buttons nach rechts
-}
+                start: '',
+                center: 'title',
+                end: 'today prev,next'
+            },
+            eventDidMount: function(info) {
+                info.el.setAttribute('title', info.event.title);
+            }
         });
         calendar.render();
     }
