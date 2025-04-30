@@ -410,10 +410,40 @@ h2 {
 }
 
 
+
+#home {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    height: 100vh;
+    padding-top: 7.5vh;
+    box-sizing: border-box;
+    text-align: center;
+}
+
 @media screen and (max-width: 1024px) {
     #home {
-        padding-top: 80px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        height: 100vh;
+        padding-top: 7.5vh;
     }
+
+    .hero-logo {
+        width: 200px;
+    }
+
+    #home h1 {
+        font-size: 44px;
+    }
+
+    #openStatusArea video {
+        width: 260px;
+    }
+}
 
     .hero-logo {
         width: 200px;
@@ -475,3 +505,43 @@ h2 {
     }
 }
 
+
+
+#home .section-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transform: translateX(-3vw); /* leicht nach links verschoben */
+}
+
+
+#cocktails .section-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transform: translateX(-3vw); /* zentriert auf alle Sektionen */
+}
+
+
+#lounges .section-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transform: translateX(-3vw); /* zentriert auf alle Sektionen */
+}
+
+
+#karriere .section-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transform: translateX(-3vw); /* zentriert auf alle Sektionen */
+}
+
+
+#kontakt .section-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transform: translateX(-3vw); /* zentriert auf alle Sektionen */
+}
