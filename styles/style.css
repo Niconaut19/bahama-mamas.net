@@ -154,11 +154,13 @@ h2 {
 
 #openStatusArea {
     margin-top: 10px;
+    background: transparent !important;
 }
 
 #openStatusArea video {
-    width: 320px;
-    max-width: 90vw;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
 }
 
 /* Cocktailkarten */
@@ -564,5 +566,24 @@ h2 {
 .sidebar-logo:hover {
     opacity: 1;
     transform: translateX(-50%) scale(1.05);
+}
+
+.lounge-video {
+    width: 450px;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 0 20px #00e6e6;
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.lounge-video:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 25px #ff00ff;
+}
+
+.lightbox video {
+    animation: popIn 0.3s ease;
 }
 

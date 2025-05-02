@@ -1,3 +1,4 @@
+
 // Funktionen nach DOM-Load
 document.addEventListener('DOMContentLoaded', function() {
     setupStatusVideo();
@@ -14,20 +15,17 @@ function setupStatusVideo() {
         const now = new Date();
         const day = now.getDay();
         const hour = now.getHours();
-        const statusSource = document.getElementById('statusSource');
-        const statusVideo = document.getElementById('statusVideo');
+        const statusImage = document.getElementById('statusImage'); // IMG statt VIDEO
 
-        if (statusSource && statusVideo) {
+        if (statusImage) {
             const shouldBeOpen = (day === 5 || day === 6) && (hour >= 22 || hour < 1);
             const newStatus = shouldBeOpen ? "open" : "closed";
 
             if (newStatus !== currentStatus) {
                 currentStatus = newStatus;
-                statusSource.src = shouldBeOpen 
-                    ? "assets/Bahama_Mamas_Open.mp4"
-                    : "assets/Bahama_Mamas_Closed.mp4";
-                statusVideo.load();
-                statusVideo.play();
+                statusImage.src = shouldBeOpen
+                    ? "assets/BahamaOpen.gif"
+                    : "assets/BahamaClosedgif.gif";
             }
         }
     }
@@ -69,10 +67,8 @@ function setupSidebarScroll() {
     const navLinks = document.querySelectorAll('.sidebar ul li a');
     const sections = document.querySelectorAll('.section');
 
-    // Funktion zum aktiven Link aktualisieren
     function updateActiveLink() {
         let current = "";
-
         if (scrollContainer.scrollTop <= 20) {
             current = "home";
         } else {
@@ -92,42 +88,86 @@ function setupSidebarScroll() {
         });
     }
 
-    // Klickverhalten mit sofortigem Pink + Scroll
     navLinks.forEach(link => {
         link.addEventListener('click', function(e) {
             e.preventDefault();
-
-            // Ziel-ID holen
             const targetId = this.getAttribute('href').substring(1);
             const targetSection = document.getElementById(targetId);
 
-            // Alle Links zurücksetzen und diesen sofort aktiv markieren
             navLinks.forEach(link => link.classList.remove('active'));
             this.classList.add('active');
 
-            // Scrollen zum Ziel
             if (targetSection) {
                 if (targetId === "home") {
-                    scrollContainer.scrollTo({
-                        top: 0,
-                        behavior: 'smooth'
-                    });
+                    scrollContainer.scrollTo({ top: 0, behavior: 'smooth' });
                 } else {
-                    targetSection.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
+                    targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
             }
 
-            // Nach 500ms scrollPosition nochmal prüfen und ggf. korrigieren
             setTimeout(() => {
                 updateActiveLink();
             }, 500);
         });
     });
 
-    // Beim Scrollen automatisch nachziehen
+// Cocktail-Videos in Lightbox
+// Karriere-Videos in Lightbox
+    const karriereVideos = document.querySelectorAll('.karriere-video');
+    karriereVideos.forEach(video => {
+        video.addEventListener('click', function () {
+            const source = this.querySelector('source');
+            if (source) {
+                lightboxImg.style.display = 'none';
+                if (lightbox.querySelector('video')) {
+                    lightbox.querySelector('video').remove();
+                }
+                const lightboxVideo = document.createElement('video');
+                lightboxVideo.controls = false;
+                lightboxVideo.autoplay = true;
+                lightboxVideo.loop = true;
+                lightboxVideo.src = source.src;
+                lightboxVideo.style.maxWidth = '90%';
+                lightboxVideo.style.maxHeight = '90%';
+                lightboxVideo.style.borderRadius = '15px';
+                lightboxVideo.style.boxShadow = '0 0 40px #ff00ff';
+                lightboxVideo.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    e.preventDefault();
+                });
+                lightbox.appendChild(lightboxVideo);
+                lightbox.style.display = 'flex';
+            }
+        });
+    });
+    const cocktailVideos = document.querySelectorAll('.cocktail-video');
+    cocktailVideos.forEach(video => {
+        video.addEventListener('click', function () {
+            const source = this.querySelector('source');
+            if (source) {
+                lightboxImg.style.display = 'none';
+                if (lightbox.querySelector('video')) {
+                    lightbox.querySelector('video').remove();
+                }
+                const lightboxVideo = document.createElement('video');
+                lightboxVideo.controls = false;
+                lightboxVideo.autoplay = true;
+                lightboxVideo.loop = true;
+                lightboxVideo.src = source.src;
+                lightboxVideo.style.maxWidth = '90%';
+                lightboxVideo.style.maxHeight = '90%';
+                lightboxVideo.style.borderRadius = '15px';
+                lightboxVideo.style.boxShadow = '0 0 40px #ff00ff';
+                lightboxVideo.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    e.preventDefault();
+                });
+                lightbox.appendChild(lightboxVideo);
+                lightbox.style.display = 'flex';
+            }
+        });
+    });
+
     let ticking = false;
     scrollContainer.addEventListener('scroll', () => {
         if (!ticking) {
@@ -140,22 +180,112 @@ function setupSidebarScroll() {
     });
 }
 
-// --- Lightbox für Cocktailkarten ---
+// --- Lightbox für Cocktailkarten und Lounge-Videos ---
 function setupLightbox() {
     const cocktailkarten = document.querySelectorAll('.cocktailkarte');
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.getElementById('lightbox-img');
 
+    // Bild-Lightbox
     cocktailkarten.forEach(card => {
-        card.addEventListener('click', function() {
-            lightboxImg.src = this.src;
-            lightbox.style.display = 'flex';
+        if (card.tagName.toLowerCase() === 'img') {
+            card.addEventListener('click', function() {
+                lightboxImg.src = this.src;
+                lightboxImg.style.display = 'block';
+                if (lightbox.querySelector('video')) {
+                    lightbox.querySelector('video').remove();
+                }
+                lightbox.style.display = 'flex';
+            });
+        }
+    });
+
+    // Video-Lightbox
+    const loungeVideos = document.querySelectorAll('.lounge-video');
+    loungeVideos.forEach(video => {
+        video.addEventListener('click', function () {
+            const source = this.querySelector('source');
+            if (source) {
+                lightboxImg.style.display = 'none';
+                if (lightbox.querySelector('video')) {
+                    lightbox.querySelector('video').remove();
+                }
+                const lightboxVideo = document.createElement('video');
+                lightboxVideo.controls = false;
+                lightboxVideo.autoplay = true;
+                lightboxVideo.loop = true;
+                lightboxVideo.src = source.src;
+                lightboxVideo.style.maxWidth = '90%';
+                lightboxVideo.style.maxHeight = '90%';
+                lightboxVideo.style.borderRadius = '15px';
+                lightboxVideo.style.boxShadow = '0 0 40px #ff00ff';
+                lightbox.appendChild(lightboxVideo);
+                lightbox.style.display = 'flex';
+            }
+        });
+    });
+
+// Cocktail-Videos in Lightbox
+// Karriere-Videos in Lightbox
+    const karriereVideos = document.querySelectorAll('.karriere-video');
+    karriereVideos.forEach(video => {
+        video.addEventListener('click', function () {
+            const source = this.querySelector('source');
+            if (source) {
+                lightboxImg.style.display = 'none';
+                if (lightbox.querySelector('video')) {
+                    lightbox.querySelector('video').remove();
+                }
+                const lightboxVideo = document.createElement('video');
+                lightboxVideo.controls = false;
+                lightboxVideo.autoplay = true;
+                lightboxVideo.loop = true;
+                lightboxVideo.src = source.src;
+                lightboxVideo.style.maxWidth = '90%';
+                lightboxVideo.style.maxHeight = '90%';
+                lightboxVideo.style.borderRadius = '15px';
+                lightboxVideo.style.boxShadow = '0 0 40px #ff00ff';
+                lightboxVideo.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    e.preventDefault();
+                });
+                lightbox.appendChild(lightboxVideo);
+                lightbox.style.display = 'flex';
+            }
+        });
+    });
+    const cocktailVideos = document.querySelectorAll('.cocktail-video');
+    cocktailVideos.forEach(video => {
+        video.addEventListener('click', function () {
+            const source = this.querySelector('source');
+            if (source) {
+                lightboxImg.style.display = 'none';
+                if (lightbox.querySelector('video')) {
+                    lightbox.querySelector('video').remove();
+                }
+                const lightboxVideo = document.createElement('video');
+                lightboxVideo.controls = false;
+                lightboxVideo.autoplay = true;
+                lightboxVideo.loop = true;
+                lightboxVideo.src = source.src;
+                lightboxVideo.style.maxWidth = '90%';
+                lightboxVideo.style.maxHeight = '90%';
+                lightboxVideo.style.borderRadius = '15px';
+                lightboxVideo.style.boxShadow = '0 0 40px #ff00ff';
+                lightboxVideo.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    e.preventDefault();
+                });
+                lightbox.appendChild(lightboxVideo);
+                lightbox.style.display = 'flex';
+            }
         });
     });
 
     lightbox.addEventListener('click', function() {
         lightbox.style.display = 'none';
+        if (lightbox.querySelector('video')) {
+            lightbox.querySelector('video').pause();
+        }
     });
 }
-
-
