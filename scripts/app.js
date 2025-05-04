@@ -46,7 +46,8 @@ function setupCalendar() {
             events: [
                 { title: 'Old School HipHop', start: '2025-05-02', color: '#ff00ff' },
                 { title: 'Bahama Mamas Saturday Night', start: '2025-05-10', color: '#00e6e6' },
-                { title: 'Beach Vibes', start: '2025-05-16', color: '#ff00ff' }
+                { title: 'Ampelparty', start: '2025-05-16', color: '#ff00ff' },
+{ title: 'Bahama Mamas Saturday Night', start: '2025-05-10', color: '#00e6e6' },
             ],
             headerToolbar: {
                 start: '',
