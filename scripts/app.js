@@ -44,12 +44,12 @@ function setupCalendar() {
             fixedWeekCount: false,
             height: 'auto',
             events: [
-                { title: 'Old School HipHop', start: '2025-05-02', color: '#ff00ff' },
-                { title: 'Bahama Mamas Saturday Night', start: '2025-05-10', color: '#00e6e6' },
-                { title: 'Ampelparty', start: '2025-05-16', color: '#ff00ff' },
-{ title: 'Bahama Mamas Saturday Night', start: '2025-05-24', color: '#00e6e6' },
-{ title: 'BadTaste Party', start: '2025-05-30', color: '#ff00ff' }
-            ],
+    { title: 'Old School HipHop', start: '2025-05-02', color: '#ff00ff' },
+    { title: 'Bahama Mamas Saturday Night', start: '2025-05-10', color: '#00e6e6' },
+    { title: 'Ampelparty', start: '2025-05-16', color: '#ff00ff' },
+    { title: 'Bahama Mamas Saturday Night', start: '2025-05-24', color: '#00e6e6' },
+    { title: 'BadTaste Party', start: '2025-05-30', color: '#ff00ff' },
+],
             headerToolbar: {
                 start: '',
                 center: 'title',
