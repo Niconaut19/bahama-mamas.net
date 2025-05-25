@@ -188,7 +188,7 @@ function setupLightbox() {
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.getElementById('lightbox-img');
 
-    // Bild-Lightbox
+    // Bild-Lightbox (Cocktailkarten)
     cocktailkarten.forEach(card => {
         if (card.tagName.toLowerCase() === 'img') {
             card.addEventListener('click', function() {
@@ -202,7 +202,7 @@ function setupLightbox() {
         }
     });
 
-    // Video-Lightbox
+    // Video-Lightbox (Lounges)
     const loungeVideos = document.querySelectorAll('.lounge-video');
     loungeVideos.forEach(video => {
         video.addEventListener('click', function () {
@@ -227,8 +227,7 @@ function setupLightbox() {
         });
     });
 
-// Cocktail-Videos in Lightbox
-// Karriere-Videos in Lightbox
+    // Video-Lightbox (Karriere)
     const karriereVideos = document.querySelectorAll('.karriere-video');
     karriereVideos.forEach(video => {
         video.addEventListener('click', function () {
@@ -256,34 +255,21 @@ function setupLightbox() {
             }
         });
     });
-    const cocktailVideos = document.querySelectorAll('.cocktail-video');
-    cocktailVideos.forEach(video => {
-        video.addEventListener('click', function () {
-            const source = this.querySelector('source');
-            if (source) {
-                lightboxImg.style.display = 'none';
-                if (lightbox.querySelector('video')) {
-                    lightbox.querySelector('video').remove();
-                }
-                const lightboxVideo = document.createElement('video');
-                lightboxVideo.controls = false;
-                lightboxVideo.autoplay = true;
-                lightboxVideo.loop = true;
-                lightboxVideo.src = source.src;
-                lightboxVideo.style.maxWidth = '90%';
-                lightboxVideo.style.maxHeight = '90%';
-                lightboxVideo.style.borderRadius = '15px';
-                lightboxVideo.style.boxShadow = '0 0 40px #ff00ff';
-                lightboxVideo.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    e.preventDefault();
-                });
-                lightbox.appendChild(lightboxVideo);
-                lightbox.style.display = 'flex';
+
+    // Lightbox für Partner-Logos
+    const partnerLogos = document.querySelectorAll('.partner-logo');
+    partnerLogos.forEach(logo => {
+        logo.addEventListener('click', function () {
+            lightboxImg.src = this.src;
+            lightboxImg.style.display = 'block';
+            if (lightbox.querySelector('video')) {
+                lightbox.querySelector('video').remove();
             }
+            lightbox.style.display = 'flex';
         });
     });
 
+    // Klick zum Schließen
     lightbox.addEventListener('click', function() {
         lightbox.style.display = 'none';
         if (lightbox.querySelector('video')) {
