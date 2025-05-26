@@ -258,7 +258,8 @@ function setupLightbox() {
 
     // Lightbox für Partner-Logos
     const partnerLogos = document.querySelectorAll('.partner-logo');
-    partnerLogos.forEach(logo => {
+partnerLogos.forEach(logo => {
+    if (!logo.closest('a.partner-link')) { // Nur wenn KEIN Link außenrum
         logo.addEventListener('click', function () {
             lightboxImg.src = this.src;
             lightboxImg.style.display = 'block';
@@ -267,7 +268,8 @@ function setupLightbox() {
             }
             lightbox.style.display = 'flex';
         });
-    });
+    }
+});
 
     // Klick zum Schließen
     lightbox.addEventListener('click', function() {

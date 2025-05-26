@@ -677,6 +677,7 @@ h2 {
     transform: scale(1.05);
 
 }
+
 .partner-grid {
     display: flex;
     flex-wrap: wrap;
@@ -738,4 +739,43 @@ h2 {
 .partner-logo:hover {
     transform: scale(1.08);
 }
+.partner-link {
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 160px;
+    transition: transform 0.3s ease;
+}
+
+.partner-link:hover {
+    transform: scale(1.05);
+}
+
+.partner-link .partner-logo {
+    width: 100%;
+    height: auto;
+    max-height: 80px;
+    object-fit: contain;
+    border-radius: 8px;
+    background: white;
+    padding: 10px;
+    box-shadow: 0 0 15px #00e6e6;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.partner-link:hover .partner-logo {
+    transform: scale(1.08);
+    box-shadow: 0 0 25px #ff00ff;
+}
+
+.partner-link p {
+    margin-top: 8px;
+    font-size: 13px;
+    color: #00e6e6;
+    text-align: center;
+    text-shadow: 0 0 6px #00e6e6;
+    pointer-events: none;
+}
+
 
