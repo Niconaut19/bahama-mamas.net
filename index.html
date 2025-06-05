@@ -54,16 +54,19 @@
     <div id="calendar"></div>
 
     <!-- Admin Panel -->
-    <div id="calendar-admin-panel" class="hidden">
-      <input type="text" id="event-title" placeholder="Eventname">
-      <input type="date" id="event-date">
-      <button id="add-event-btn">Event hinzufügen</button>
-      <br><br>
-      <input type="date" id="delete-date">
-      <button id="delete-event-btn">Event löschen</button>
-    </div>
+    <!-- Admin Panel als Modal -->
+<div id="calendar-admin-modal" class="hidden">
+  <div class="modal-content">
+    <span id="close-admin-modal" class="close-button">×</span>
+    <h3>Eventverwaltung</h3>
+    <input type="text" id="event-title" placeholder="Eventname">
+    <input type="date" id="event-date">
+    <button id="add-event-btn">Event hinzufügen</button>
+    <br><br>
+    <input type="date" id="delete-date">
+    <button id="delete-event-btn">Event löschen</button>
   </div>
-</section>
+</div>
 
         <section id="cocktails" class="section">
             <div class="section-content">
@@ -162,7 +165,6 @@
 <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
 <script src="scripts/app.js"></script>
 
-<!-- Admin Login Overlay -->
 <!-- Admin Login Overlay -->
 <div id="admin-overlay" class="hidden">
   <div class="admin-login-box">

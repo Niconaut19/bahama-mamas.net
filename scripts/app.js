@@ -407,9 +407,10 @@ document.addEventListener('DOMContentLoaded', function () {
         adminOverlay.classList.add('hidden');
         passwordField.value = "";
         loginError.classList.add('hidden');
-        if (typeof window.activateAdminMode === "function") {
-          window.activateAdminMode();
-        }
+        const modal = document.getElementById("calendar-admin-modal");
+if (modal) {
+  modal.classList.remove("hidden");
+}
       } else {
         loginError.classList.remove('hidden');
       }
@@ -425,4 +426,12 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 });
+
+const closeAdminModal = document.getElementById("close-admin-modal");
+if (closeAdminModal) {
+  closeAdminModal.addEventListener("click", () => {
+    document.getElementById("calendar-admin-modal").classList.add("hidden");
+  });
+}
+
 

@@ -898,3 +898,41 @@ h2 {
   cursor: pointer;
   z-index: 1001;
 }
+
+#calendar-admin-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+#calendar-admin-modal.hidden {
+  display: none;
+}
+
+.modal-content {
+  background: #1c1c1c;
+  padding: 20px 30px;
+  border-radius: 12px;
+  color: white;
+  min-width: 300px;
+  max-width: 90%;
+  position: relative;
+  box-shadow: 0 0 20px #ff00ff80;
+  border: 2px solid #ff00ff;
+}
+
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 14px;
+  font-size: 24px;
+  cursor: pointer;
+  color: #ff00ff;
+}
