@@ -1,4 +1,3 @@
-
 // Funktionen nach DOM-Load
 document.addEventListener('DOMContentLoaded', function() {
     setupStatusVideo();
@@ -13,20 +12,41 @@ function setupStatusVideo() {
 
     function updateStatus() {
         const now = new Date();
-        const day = now.getDay();
-        const hour = now.getHours();
-        const statusImage = document.getElementById('statusImage'); // IMG statt VIDEO
+        const currentDate = now.toISOString().split("T")[0];
+        const currentHour = now.getHours();
+        const statusImage = document.getElementById('statusImage');
 
-        if (statusImage) {
-            const shouldBeOpen = (day === 5 || day === 6) && (hour >= 22 || hour < 1);
-            const newStatus = shouldBeOpen ? "open" : "closed";
+        let savedEvents = JSON.parse(localStorage.getItem('bahamaEvents') || "[]");
 
-            if (newStatus !== currentStatus) {
-                currentStatus = newStatus;
-                statusImage.src = shouldBeOpen
-                    ? "assets/BahamaOpen.gif"
-                    : "assets/BahamaClosedgif.gif";
-            }
+        // Kalender-Events plus Standard-Events kombinieren
+        const allEvents = [
+            { title: 'Old School HipHop', start: '2025-05-02' },
+            { title: 'Bahama Mamas Saturday Night', start: '2025-05-10' },
+            { title: 'Ampelparty', start: '2025-05-16' },
+            { title: 'Bahama Mamas Saturday Night', start: '2025-05-24' },
+            { title: 'BadTaste Party', start: '2025-05-30' },
+            { title: 'Bahama No 4', start: '2025-06-04' },
+            { title: 'Bahama Mamas Saturday Night', start: '2025-06-07' },
+            { title: 'Bahama No 4', start: '2025-06-11' },
+            { title: 'Horror Night', start: '2025-06-13' },
+            { title: 'Bahama No 4', start: '2025-06-18' },
+            { title: 'Bahama Mamas Saturday Night', start: '2025-06-21' },
+            { title: 'Bahama No 4', start: '2025-06-25' },
+            { title: 'Ampel Party 2.0', start: '2025-06-27' },
+            { title: 'Bahama No 4', start: '2025-07-02' },
+            { title: 'Bahama Mamas Saturday Night', start: '2025-07-05' },
+            ...savedEvents
+        ];
+
+        const hasEventToday = allEvents.some(event => event.start === currentDate);
+        const shouldBeOpen = hasEventToday && (currentHour >= 22 || currentHour < 1);
+        const newStatus = shouldBeOpen ? "open" : "closed";
+
+        if (statusImage && newStatus !== currentStatus) {
+            currentStatus = newStatus;
+            statusImage.src = shouldBeOpen
+                ? "assets/BahamaOpen.gif"
+                : "assets/BahamaClosedgif.gif";
         }
     }
 
@@ -34,32 +54,51 @@ function setupStatusVideo() {
     updateStatus();
 }
 
+
 // --- FullCalendar Setup ---
 function setupCalendar() {
     const calendarEl = document.getElementById('calendar');
+    const adminPanel = document.getElementById('calendar-admin-panel');
+    let calendar;
+
+    const defaultEvents = [
+        { title: 'Old School HipHop', start: '2025-05-02', color: '#8a2be2' },
+        { title: 'Bahama Mamas Saturday Night', start: '2025-05-10', color: '#ff69b4' },
+        { title: 'Ampelparty', start: '2025-05-16', color: '#8a2be2' },
+        { title: 'Bahama Mamas Saturday Night', start: '2025-05-24', color: '#ff69b4' },
+        { title: 'BadTaste Party', start: '2025-05-30', color: '#8a2be2' },
+        { title: 'Bahama No 4', start: '2025-06-04', color: '#40e0d0' },
+        { title: 'Bahama Mamas Saturday Night', start: '2025-06-07', color: '#ff69b4' },
+        { title: 'Bahama No 4', start: '2025-06-11', color: '#40e0d0' },
+        { title: 'Horror Night', start: '2025-06-13', color: '#8a2be2' },
+        { title: 'Bahama No 4', start: '2025-06-18', color: '#40e0d0' },
+        { title: 'Bahama Mamas Saturday Night', start: '2025-06-21', color: '#ff69b4' },
+        { title: 'Bahama No 4', start: '2025-06-25', color: '#40e0d0' },
+        { title: 'Ampel Party 2.0', start: '2025-06-27', color: '#8a2be2' },
+        { title: 'Bahama No 4', start: '2025-07-02', color: '#40e0d0' },
+        { title: 'Bahama Mamas Saturday Night', start: '2025-07-05', color: '#ff69b4' },
+    ];
+
+    let savedEvents = JSON.parse(localStorage.getItem('bahamaEvents') || "[]");
+    const combinedEvents = [...defaultEvents, ...savedEvents];
+
+    function getColorForTitle(title) {
+        title = title.toLowerCase();
+        if (title.includes("no 4")) return "#40e0d0";
+        if (title.includes("saturday")) return "#ff69b4";
+        if (title.includes("ampel")) return "#8a2be2";
+        if (title.includes("horror")) return "#8a2be2";
+        if (title.includes("badtaste")) return "#8a2be2";
+        return "#00e6e6";
+    }
+
     if (calendarEl) {
-        const calendar = new FullCalendar.Calendar(calendarEl, {
+        calendar = new FullCalendar.Calendar(calendarEl, {
             initialView: 'dayGridMonth',
             aspectRatio: 1.8,
             fixedWeekCount: false,
             height: 'auto',
-            events: [
-    { title: 'Old School HipHop', start: '2025-05-02', color: '#8a2be2' },
-    { title: 'Bahama Mamas Saturday Night', start: '2025-05-10', color: '#ff69b4' },
-    { title: 'Ampelparty', start: '2025-05-16', color: '#8a2be2' },
-    { title: 'Bahama Mamas Saturday Night', start: '2025-05-24', color: '#ff69b4' },
-    { title: 'BadTaste Party', start: '2025-05-30', color: '#8a2be2' },
-{ title: 'Bahama No 4', start: '2025-06-04', color: '#40e0d0' },
-{ title: 'Bahama Mamas Saturday Night', start: '2025-06-07', color: '#ff69b4' },
-{ title: 'Bahama No 4', start: '2025-06-11', color: '#40e0d0' },
-{ title: 'Horror Night', start: '2025-06-13', color: '#8a2be2' },
-{ title: 'Bahama No 4', start: '2025-06-18', color: '#40e0d0' },
-{ title: 'Bahama Mamas Saturday Night', start: '2025-06-21', color: '#ff69b4' },
-{ title: 'Bahama No 4', start: '2025-06-25', color: '#40e0d0' },
-{ title: 'Ampel Party 2.0', start: '2025-06-27', color: '#8a2be2' },
-{ title: 'Bahama No 4', start: '2025-07-02', color: '#40e0d0' },
-{ title: 'Bahama Mamas Saturday Night', start: '2025-07-05', color: '#ff69b4' },
-],
+            events: combinedEvents,
             headerToolbar: {
                 start: '',
                 center: 'title',
@@ -71,6 +110,43 @@ function setupCalendar() {
         });
         calendar.render();
     }
+
+    const addBtn = document.getElementById('add-event-btn');
+    if (addBtn) {
+        addBtn.addEventListener('click', () => {
+            const title = document.getElementById('event-title').value;
+            const date = document.getElementById('event-date').value;
+            if (!title || !date) return;
+
+            const color = getColorForTitle(title);
+            const newEvent = { title, start: date, color };
+            calendar.addEvent(newEvent);
+
+            savedEvents.push(newEvent);
+            localStorage.setItem('bahamaEvents', JSON.stringify(savedEvents));
+
+            document.getElementById('event-title').value = "";
+            document.getElementById('event-date').value = "";
+        });
+    }
+
+    const deleteBtn = document.getElementById('delete-event-btn');
+    if (deleteBtn) {
+        deleteBtn.addEventListener('click', () => {
+            const delDate = document.getElementById('delete-date').value;
+            if (!delDate) return;
+
+            savedEvents = savedEvents.filter(ev => ev.start !== delDate);
+            localStorage.setItem('bahamaEvents', JSON.stringify(savedEvents));
+            location.reload();
+        });
+    }
+
+    window.activateAdminMode = function () {
+        if (adminPanel) {
+            adminPanel.classList.remove('hidden');
+        }
+    };
 }
 
 // --- Aktiven Sidebar-Link markieren beim Scrollen und Smooth Scroll ---
@@ -289,3 +365,64 @@ partnerLogos.forEach(logo => {
         }
     });
 }
+
+// Admin Login Verhalten
+document.addEventListener('DOMContentLoaded', function () {
+  const adminButton = document.getElementById('admin-button');
+  const adminOverlay = document.getElementById('admin-overlay');
+  const loginBtn = document.getElementById('admin-login-btn');
+  const passwordField = document.getElementById('admin-password');
+  const loginError = document.getElementById('admin-login-error');
+  const closeBtn = document.getElementById('admin-close-btn');
+  if (closeBtn) {
+    closeBtn.addEventListener('click', () => {
+      adminOverlay.classList.add('hidden');
+      passwordField.value = "";
+      loginError.classList.add('hidden');
+    });
+  }
+  const adminPassword = "bahama123"; // Passwort kannst du hier ändern
+
+  const eventsSection = document.getElementById('events');
+
+  // Zeige Zahnrad nur, wenn Events-Sektion im Viewport sichtbar ist
+  window.addEventListener('scroll', () => {
+    const rect = eventsSection.getBoundingClientRect();
+    const inView = rect.top < window.innerHeight && rect.bottom > 100;
+    if (inView) {
+      adminButton.classList.remove('hidden');
+    } else {
+      adminButton.classList.add('hidden');
+    }
+  });
+
+  // Klick auf Zahnrad → öffnet Admin-Login
+  if (adminButton && loginBtn && passwordField) {
+    adminButton.addEventListener('click', () => {
+      adminOverlay.classList.remove('hidden');
+    });
+
+    loginBtn.addEventListener('click', () => {
+      if (passwordField.value === adminPassword) {
+        adminOverlay.classList.add('hidden');
+        passwordField.value = "";
+        loginError.classList.add('hidden');
+        if (typeof window.activateAdminMode === "function") {
+          window.activateAdminMode();
+        }
+      } else {
+        loginError.classList.remove('hidden');
+      }
+    });
+
+    // ESC-Taste schließt Overlay
+    document.addEventListener('keydown', (e) => {
+      if (e.key === "Escape") {
+        adminOverlay.classList.add('hidden');
+        passwordField.value = "";
+        loginError.classList.add('hidden');
+      }
+    });
+  }
+});
+

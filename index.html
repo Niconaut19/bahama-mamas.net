@@ -43,12 +43,24 @@
             </div>
         </section>
 
-        <section id="events" class="section">
-            <div class="section-content">
-                <h2>Events</h2>
-                <div id="calendar"></div>
-            </div>
-        </section>
+        <section class="section" id="events">
+  <div class="section-content">
+    <h2>Events</h2>
+    <div id="calendar"></div>
+
+    <!-- Admin Panel (nach Login sichtbar) -->
+    <div class="hidden" id="calendar-admin-panel">
+      <input type="text" id="event-title" placeholder="Eventtitel">
+      <input type="date" id="event-date">
+      <button id="add-event-btn">Hinzufügen</button>
+      <input type="date" id="delete-date">
+      <button id="delete-event-btn">Löschen</button>
+    </div>
+
+    <!-- Zahnrad -->
+    <div id="admin-button">⚙️</div>
+  </div>
+</section>
 
         <section id="cocktails" class="section">
             <div class="section-content">
@@ -146,6 +158,20 @@
 
 <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
 <script src="scripts/app.js"></script>
+
+<!-- Admin Login Overlay -->
+<!-- Admin Login Overlay -->
+<div id="admin-overlay" class="hidden">
+  <div class="admin-login-box">
+    <!-- ❌ Schließen-Button oben rechts -->
+    <div class="admin-close-btn" id="admin-close-btn">✖</div>
+
+    <h3>Admin Login</h3>
+    <input type="password" id="admin-password" placeholder="Passwort eingeben" />
+    <button id="admin-login-btn">Login</button>
+    <div id="admin-login-error" class="hidden">Falsches Passwort</div>
+  </div>
+</div>
 
 </body>
 </html>

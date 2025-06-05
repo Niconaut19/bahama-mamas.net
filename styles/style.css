@@ -778,4 +778,112 @@ h2 {
     pointer-events: none;
 }
 
+/* Events-Sektion relativ setzen, damit Zahnrad sich daran orientiert */
+#events .section-content {
+  position: relative;
+}
 
+/* Zahnrad direkt neben dem Kalender */
+#admin-button {
+  position: absolute;
+  top: calc(100% - 30px); /* knapp unterhalb vom Kalender */
+  left: calc(100% - 50px); /* rechtsbündig zum Kalenderblock */
+  background-color: rgba(255, 0, 255, 0.2);
+  border: 2px solid #ff00ff;
+  border-radius: 50%;
+  width: 42px;
+  height: 42px;
+  font-size: 22px;
+  color: #ff00ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  box-shadow: 0 0 12px #ff00ff;
+  transition: transform 0.3s ease;
+}
+
+#admin-button:hover {
+  transform: scale(1.1);
+}
+
+/* Admin-Overlay zum Login */
+#admin-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.85);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+/* Login-Box Styling */
+.admin-login-box {
+    background: #000;
+    border: 2px solid #00e6e6;
+    padding: 30px;
+    border-radius: 16px;
+    text-align: center;
+    box-shadow: 0 0 30px #00e6e6;
+}
+
+.admin-login-box h3 {
+    color: #00e6e6;
+    margin-bottom: 15px;
+}
+
+.admin-login-box input {
+    padding: 8px 12px;
+    border: 1px solid #00e6e6;
+    background: #111;
+    color: #fff;
+    border-radius: 6px;
+    margin-bottom: 10px;
+    width: 220px;
+}
+
+.admin-login-box button {
+    background: #00e6e6;
+    color: #000;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* Fehleranzeige bei falschem Passwort */
+#admin-login-error {
+    color: #ff00ff;
+    margin-top: 10px;
+    text-shadow: 0 0 5px #ff00ff;
+}
+
+/* Verstecken über .hidden */
+.hidden {
+    display: none !important;
+}
+
+#events .section-content {
+    position: relative;
+}
+
+.admin-login-box {
+  position: relative;
+}
+
+.admin-close-btn {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  color: red;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 1001;
+}
