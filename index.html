@@ -43,22 +43,25 @@
             </div>
         </section>
 
-        <section class="section" id="events">
+        <section id="events" class="section">
   <div class="section-content">
     <h2>Events</h2>
+
+    <!-- Zahnrad oben rechts -->
+    <div id="admin-button">⚙️</div>
+
+    <!-- Kalender -->
     <div id="calendar"></div>
 
-    <!-- Admin Panel (nach Login sichtbar) -->
-    <div class="hidden" id="calendar-admin-panel">
-      <input type="text" id="event-title" placeholder="Eventtitel">
+    <!-- Admin Panel -->
+    <div id="calendar-admin-panel" class="hidden">
+      <input type="text" id="event-title" placeholder="Eventname">
       <input type="date" id="event-date">
-      <button id="add-event-btn">Hinzufügen</button>
+      <button id="add-event-btn">Event hinzufügen</button>
+      <br><br>
       <input type="date" id="delete-date">
-      <button id="delete-event-btn">Löschen</button>
+      <button id="delete-event-btn">Event löschen</button>
     </div>
-
-    <!-- Zahnrad -->
-    <div id="admin-button">⚙️</div>
   </div>
 </section>
 

@@ -783,29 +783,40 @@ h2 {
   position: relative;
 }
 
-/* Zahnrad direkt neben dem Kalender */
+#calendar {
+  position: relative;
+}
+
 #admin-button {
   position: absolute;
-  top: calc(100% - 30px); /* knapp unterhalb vom Kalender */
-  left: calc(100% - 50px); /* rechtsbündig zum Kalenderblock */
-  background-color: rgba(255, 0, 255, 0.2);
+  top: 0;
+  right: 0;
+  margin: 10px;
+  background-color: rgba(255, 0, 255, 0.15);
   border: 2px solid #ff00ff;
   border-radius: 50%;
-  width: 42px;
-  height: 42px;
-  font-size: 22px;
+  width: 36px;
+  height: 36px;
+  font-size: 18px;
   color: #ff00ff;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   z-index: 10;
-  box-shadow: 0 0 12px #ff00ff;
-  transition: transform 0.3s ease;
+  box-shadow: 0 0 8px #ff00ff;
+  transition: transform 0.2s ease;
 }
 
 #admin-button:hover {
   transform: scale(1.1);
+}
+
+@media (max-width: 1024px) {
+  #admin-button {
+    top: 12px;
+    left: 12px;
+  }
 }
 
 /* Admin-Overlay zum Login */
