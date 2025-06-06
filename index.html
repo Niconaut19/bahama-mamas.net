@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=1280, initial-scale=1.0">
     <meta name="description" content="Bahama Mamas Event App für RageMP Server">
     <meta name="theme-color" content="#000000">
     <title>Bahama Mamas</title>
@@ -21,8 +21,8 @@
             <li><a href="#cocktails">Cocktails</a></li>
             <li><a href="#lounges">Lounges</a></li>
             <li><a href="#karriere">Karriere</a></li>
-<li><a href="#partner">Partner</a></li>
-<li><a href="#kontakt">Kontakt</a></li>
+            <li><a href="#partner">Partner</a></li>
+            <li><a href="#kontakt">Kontakt</a></li>
         </ul>
     </nav>
     <div class="sidebar-logo">
@@ -44,29 +44,25 @@
         </section>
 
         <section id="events" class="section">
-  <div class="section-content">
-    <h2>Events</h2>
+            <div class="section-content">
+                <h2>Events</h2>
+                <div id="admin-button">⚙️</div>
+                <div id="calendar"></div>
 
-    <!-- Zahnrad oben rechts -->
-    <div id="admin-button">⚙️</div>
-
-    <!-- Kalender -->
-    <div id="calendar"></div>
-
-    <!-- Admin Panel -->
-    <!-- Admin Panel als Modal -->
-<div id="calendar-admin-modal" class="hidden">
-  <div class="modal-content">
-    <span id="close-admin-modal" class="close-button">×</span>
-    <h3>Eventverwaltung</h3>
-    <input type="text" id="event-title" placeholder="Eventname">
-    <input type="date" id="event-date">
-    <button id="add-event-btn">Event hinzufügen</button>
-    <br><br>
-    <input type="date" id="delete-date">
-    <button id="delete-event-btn">Event löschen</button>
-  </div>
-</div>
+                <div id="calendar-admin-modal" class="hidden">
+                    <div class="modal-content">
+                        <span id="close-admin-modal" class="close-button">×</span>
+                        <h3>Eventverwaltung</h3>
+                        <input type="text" id="event-title" placeholder="Eventname">
+                        <input type="date" id="event-date">
+                        <button id="add-event-btn">Event hinzufügen</button>
+                        <br><br>
+                        <input type="date" id="delete-date">
+                        <button id="delete-event-btn">Event löschen</button>
+                    </div>
+                </div>
+            </div>
+        </section> <!-- 🛠 KORRIGIERT: Events-Sektion geschlossen -->
 
         <section id="cocktails" class="section">
             <div class="section-content">
@@ -89,12 +85,14 @@
                 <h2>Lounges</h2>
                 <div class="cocktailkarte-container">
                     <div class="cocktailkarte-wrapper">
-    <video class="cocktailkarte lounge-video" autoplay muted loop playsinline>
-        <source src="assets/Bahama_Mamas_Lounges.mp4" type="video/mp4">
-        Dein Browser unterstützt kein Video.
-    </video>
-    <p class="click-hint">Hier klicken zum Vergrößern</p>
-</div>
+                        <video class="cocktailkarte lounge-video" autoplay muted loop playsinline>
+                            <source src="assets/Bahama_Mamas_Lounges.mp4" type="video/mp4">
+                            Dein Browser unterstützt kein Video.
+                        </video>
+                        <p class="click-hint">Hier klicken zum Vergrößern</p>
+                    </div>
+                </div>
+            </div>
         </section>
 
         <section id="karriere" class="section">
@@ -102,52 +100,52 @@
                 <h2>Karriere</h2>
                 <div class="cocktailkarte-container">
                     <div class="cocktailkarte-wrapper">
-    <video class="cocktailkarte karriere-video" autoplay muted loop playsinline>
-        <source src="assets/Bahama_Mamas_Wir_suchen_dich.mp4" type="video/mp4">
-        Dein Browser unterstützt kein Video.
-    </video>
-    <p class="click-hint">Hier klicken zum Vergrößern</p>
-</div>
+                        <video class="cocktailkarte karriere-video" autoplay muted loop playsinline>
+                            <source src="assets/Bahama_Mamas_Wir_suchen_dich.mp4" type="video/mp4">
+                            Dein Browser unterstützt kein Video.
+                        </video>
+                        <p class="click-hint">Hier klicken zum Vergrößern</p>
+                    </div>
                 </div>
             </div>
         </section>
 
-<section id="partner" class="section">
-  <div class="section-content">
-    <h2>Unsere Partner</h2>
-    <div class="partner-grid">
-      <div class="partner-item">
-        <a href="https://sites.google.com/view/legacyink/startseite" target="_blank" rel="noopener noreferrer" class="partner-item partner-link">
-          <img class="partner-logo" src="assets/tattoo_laden_logo2.png" alt="Legacy Ink">
-          <p>Legacy Ink</p>
-        </a>
-      </div>
-      <div class="partner-item">
-        <img class="partner-logo" src="assets/glanz_und_glamour_3.png" alt="Glanz & Glamour">
-        <p>Glanz & Glamour</p>
-      </div>
-      <div class="partner-item">
-        <img class="partner-logo" src="assets/Logo-Buns.png" alt="Snr. Buns">
-        <p>Snr. Buns</p>
-      </div>
-      <div class="partner-item">
-        <img class="partner-logo" src="assets/HeatyTaco Logo.png" alt="Hearty Taco">
-        <p>Hearty Taco</p>
-      </div>
-      <div class="partner-item">
-        <img class="partner-logo" src="assets/BobCat Security.png" alt="Bobcat Security">
-        <p>Bobcat Security</p>
-      </div>
-    </div>
-  </div>
-</section>
+        <section id="partner" class="section">
+            <div class="section-content">
+                <h2>Unsere Partner</h2>
+                <div class="partner-grid">
+                    <div class="partner-item">
+                        <a href="https://sites.google.com/view/legacyink/startseite" target="_blank" rel="noopener noreferrer" class="partner-item partner-link">
+                            <img class="partner-logo" src="assets/tattoo_laden_logo2.png" alt="Legacy Ink">
+                            <p>Legacy Ink</p>
+                        </a>
+                    </div>
+                    <div class="partner-item">
+                        <img class="partner-logo" src="assets/glanz_und_glamour_3.png" alt="Glanz & Glamour">
+                        <p>Glanz & Glamour</p>
+                    </div>
+                    <div class="partner-item">
+                        <img class="partner-logo" src="assets/Logo-Buns.png" alt="Snr. Buns">
+                        <p>Snr. Buns</p>
+                    </div>
+                    <div class="partner-item">
+                        <img class="partner-logo" src="assets/HeatyTaco Logo.png" alt="Hearty Taco">
+                        <p>Hearty Taco</p>
+                    </div>
+                    <div class="partner-item">
+                        <img class="partner-logo" src="assets/BobCat Security.png" alt="Bobcat Security">
+                        <p>Bobcat Security</p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
         <section id="kontakt" class="section">
             <div class="section-content">
                 <h2>Kontakt</h2>
                 <div class="kontakt-info">
                     <p><strong>Inhaber:</strong> James Brick</p>
-<p><strong>Stellvertretung:</strong> Linda Collins</p>
+                    <p><strong>Stellvertretung:</strong> Linda Collins</p>
                     <p><strong>Leitstelle:</strong> 551551</p>
                     <p><strong>Email:</strong> <a href="mailto:bahamas@mail.ls">bahamas@mail.ls</a></p>
                 </div>
@@ -168,9 +166,7 @@
 <!-- Admin Login Overlay -->
 <div id="admin-overlay" class="hidden">
   <div class="admin-login-box">
-    <!-- ❌ Schließen-Button oben rechts -->
     <div class="admin-close-btn" id="admin-close-btn">✖</div>
-
     <h3>Admin Login</h3>
     <input type="password" id="admin-password" placeholder="Passwort eingeben" />
     <button id="admin-login-btn">Login</button>

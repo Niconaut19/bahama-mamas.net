@@ -58,7 +58,7 @@ function setupStatusVideo() {
 // --- FullCalendar Setup ---
 function setupCalendar() {
     const calendarEl = document.getElementById('calendar');
-    const adminPanel = document.getElementById('calendar-admin-panel');
+    const adminPanel = document.getElementById('calendar-admin-modal');
     let calendar;
 
     const defaultEvents = [

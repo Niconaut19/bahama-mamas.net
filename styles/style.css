@@ -90,9 +90,10 @@ html, body {
     scroll-snap-align: start;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start; /* WICHTIG: Start = oben */
+    justify-content: flex-start;
     align-items: center;
-    padding-top: 60px; /* Abstand von ganz oben */
+    padding-top: 60px;
+    margin-bottom: 80px; /* NEU – Abstand nach unten */
 }
 
 .section-content {
@@ -372,9 +373,13 @@ h2 {
 .section-content h2 {
     margin-top: 0;
     margin-bottom: 20px;
-    font-size: 48px;
+    font-size: 32px;
     text-align: center;
-    color: white;
+    color: #00e6e6;
+    text-shadow: 0 0 8px #00e6e6;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 .kontakt-info {
@@ -936,3 +941,12 @@ h2 {
   cursor: pointer;
   color: #ff00ff;
 }
+
+#app-wrapper {
+  width: 1280px;
+  height: 720px;
+  margin: 0 auto;
+  overflow: hidden;
+  position: relative;
+}
+
