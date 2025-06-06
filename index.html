@@ -58,7 +58,7 @@
                         <button id="add-event-btn">Event hinzufügen</button>
                         <br><br>
                         <input type="date" id="delete-date">
-                        <button id="delete-event-btn">Event löschen</button>
+                        <button id="delete-event-btn" type="button">Löschen</button>
                     </div>
                 </div>
             </div>
@@ -171,6 +171,49 @@
     <input type="password" id="admin-password" placeholder="Passwort eingeben" />
     <button id="admin-login-btn">Login</button>
     <div id="admin-login-error" class="hidden">Falsches Passwort</div>
+  </div>
+</div>
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+  import { getDatabase, ref, push, onValue } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyDG29FvyZh9Db0iuiyiZEMJ_hJzGsd5-_k",
+    authDomain: "bahama-mamas-9228a.firebaseapp.com",
+    databaseURL: "https://bahama-mamas-9228a-default-rtdb.europe-west1.firebasedatabase.app",
+    projectId: "bahama-mamas-9228a",
+    storageBucket: "bahama-mamas-9228a.firebasestorage.app",
+    messagingSenderId: "1009133915208",
+    appId: "1:1009133915208:web:ec157e9bd7809829e01c7d",
+    measurementId: "G-Y3J24595GD"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getDatabase(app);
+
+  // Event speichern
+  window.saveEvent = (title, date) => {
+    push(ref(db, 'events/'), {
+      title,
+      date
+    });
+  };
+
+  // Events laden
+  window.loadEvents = (callback) => {
+    onValue(ref(db, 'events/'), (snapshot) => {
+      const data = snapshot.val();
+      callback(data);
+    });
+  };
+</script>
+
+<div id="event-detail-overlay" style="display: none;">
+  <div class="event-detail-box">
+    <span id="event-detail-close">×</span>
+    <h3 id="event-detail-title"></h3>
+    <p id="event-detail-date"></p>
   </div>
 </div>
 

@@ -79,18 +79,18 @@ function setupCalendar() {
         { title: 'Bahama Mamas Saturday Night', start: '2025-07-05', color: '#ff69b4' },
     ];
 
-    let savedEvents = JSON.parse(localStorage.getItem('bahamaEvents') || "[]");
-    const combinedEvents = [...defaultEvents, ...savedEvents];
+    let savedEvents = [];
+let combinedEvents = [...defaultEvents];
 
-    function getColorForTitle(title) {
-        title = title.toLowerCase();
-        if (title.includes("no 4")) return "#40e0d0";
-        if (title.includes("saturday")) return "#ff69b4";
-        if (title.includes("ampel")) return "#8a2be2";
-        if (title.includes("horror")) return "#8a2be2";
-        if (title.includes("badtaste")) return "#8a2be2";
-        return "#00e6e6";
+    function getColorForTitle(title, date) {
+    const day = new Date(date).getDay(); // 0 = Sonntag, 1 = Montag, ..., 6 = Samstag
+    switch (day) {
+        case 3: return '#40e0d0'; // Mittwoch – Türkis
+        case 5: return '#8a2be2'; // Freitag – Lila
+        case 6: return '#ff69b4'; // Samstag – Pink
+        default: return '#00e6e6'; // Sonst – Standard-Türkis
     }
+}
 
     if (calendarEl) {
         calendar = new FullCalendar.Calendar(calendarEl, {
@@ -111,6 +111,43 @@ function setupCalendar() {
         calendar.render();
     }
 
+calendar.on('eventClick', function(info) {
+    const event = info.event;
+    const startDate = new Date(event.start);
+    const weekday = startDate.getDay(); // 0 = So, 1 = Mo, ..., 6 = Sa
+
+    const dateStr = startDate.toLocaleDateString('de-DE', {
+        weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
+    });
+
+    let timeRange = "";
+    if (weekday === 3) timeRange = "20:00 – 23:00 Uhr";      // Mittwoch
+    if (weekday === 5 || weekday === 6) timeRange = "22:00 – 01:00 Uhr"; // Freitag & Samstag
+
+    document.getElementById("event-detail-title").textContent = event.title;
+    document.getElementById("event-detail-date").textContent = `${dateStr}${timeRange ? " – " + timeRange : ""}`;
+    document.getElementById("event-detail-overlay").style.display = "flex";
+});
+
+// Schließen-Funktion
+document.getElementById("event-detail-close").addEventListener("click", () => {
+    document.getElementById("event-detail-overlay").style.display = "none";
+});
+
+if (window.loadEvents) {
+    window.loadEvents((events) => {
+        if (events) {
+            Object.values(events).forEach(ev => {
+                calendar.addEvent({
+                    title: ev.title,
+                    start: ev.date,
+                    color: getColorForTitle(ev.title)
+                });
+            });
+        }
+    });
+}
+
     const addBtn = document.getElementById('add-event-btn');
     if (addBtn) {
         addBtn.addEventListener('click', () => {
@@ -122,8 +159,9 @@ function setupCalendar() {
             const newEvent = { title, start: date, color };
             calendar.addEvent(newEvent);
 
-            savedEvents.push(newEvent);
-            localStorage.setItem('bahamaEvents', JSON.stringify(savedEvents));
+            if (window.saveEvent) {
+    window.saveEvent(title, date);
+}
 
             document.getElementById('event-title').value = "";
             document.getElementById('event-date').value = "";
